@@ -1,0 +1,36 @@
+{
+  "name": "POManagement",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^7",
+    "@sap/cds-hana": "^2",
+    "@sap/xssec": "^3",
+    "express": "^4",
+    "rimraf": "^5.0.5"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "deploy": "rimraf resources mta_archives gen && mbt build --mtar=pomanagement.mtar && cf deploy mta_archives/pomanagement.mtar"
+  },
+  "cds": {
+    "i18n": {
+      "folders": [
+        "_i18n"
+      ]
+    },
+    "requires": {
+      "[production]": {
+        "db": "hana"
+      },
+      "auth": "xsuaa"
+    }
+  }
+}
